@@ -122,7 +122,7 @@ const generateSaveBtn = function () {
     };
   
     if (notes.length === 0) {
-      notelistI.push(create$li("Unsaved Notes", false));
+      notelistI.push(create$li("Empty Note File", false));
     }
   
     notes.forEach((note) => {
