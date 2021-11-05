@@ -7,7 +7,7 @@ const $saveNoteBtn = $(".save-note");
 
 
 // textarea notes memory
-let activeNote = {};
+let virtualNotes = {};
 
 // function to generate notes via get
 const getNotes = () => {
