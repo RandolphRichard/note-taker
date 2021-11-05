@@ -49,7 +49,27 @@ app.post("/api/notes", function (req, res) {
   });
 });
 //end creating the post requests
-
+// created the deleted request
+app.delete("/api/notes/:id", function (req, res) {
+    const deleteNote = req.params.id;
+    fs.readFile("./db/db.json", function (err, data) {
+      if (err) throw err;
+      let allNotes = JSON.parse(data);
+      function findNote(deleteNote, allNotes) {
+        for (var i = 0; i < allNotes.length; i++) {
+          if (allNotes[i].id === deleteNote) {
+            allNotes.splice(i, 1);
+          }
+        }
+      }
+      findNote(deleteNote, allNotes);
+      fs.writeFile("./db/db.json", JSON.stringify(allNotes, null, 2), (err) => {
+        if (err) throw err;
+        res.send("200");
+      });
+    });
+  });
+  // end the created delete request
 // listen
 app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
