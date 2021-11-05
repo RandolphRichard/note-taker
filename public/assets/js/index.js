@@ -4,8 +4,6 @@ const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
 
-
-
 // textarea notes memory
 let virtualNotes = {};
 
@@ -33,4 +31,21 @@ const deleteNote = (id) => {
     method: "DELETE",
   });
 };
+
+// function to display virtual notes, or empty it.
+const generateVirtualNote = () => {
+    $saveNoteBtn.hide();
+  
+    if (virtualNotes.id) {
+      $noteTitle.attr("toread", true);
+      $noteText.attr("toread", true);
+      $noteTitle.val(virtualNotes.title);
+      $noteText.val(virtualNotes.text);
+    } else {
+      $noteTitle.attr("toread", false);
+      $noteText.attr("toread", false);
+      $noteTitle.val("");
+      $noteText.val("");
+    }
+  };
 
