@@ -49,3 +49,52 @@ const generateVirtualNote = () => {
     }
   };
 
+  // Save note
+const manageSaveNote = function () {
+    const newNote = {
+      title: $noteTitle.val(),
+      text: $noteText.val(),
+    };
+  
+    saveNote(newNote).then(() => {
+      
+    generateVirtualNote();
+    });
+  };
+
+  const manageDeleteNote = function (event) {
+    // stop the list from being called when clicked on the button
+    event.stopPropagation();
+  
+    const note = $(this).parent(".list-group-item").data();
+  
+    if (virtualNotes.id === note.id) {
+      virtualNotes = {};
+    }
+  
+    deleteNote(note.id).then(() => {
+      
+    generateVirtualNote();
+    });
+  };
+
+  //  display the virtual note
+const manageSetNote = function () {
+    virtualNotes = $(this).data();
+    generateVirtualNote();
+  };
+  
+  // empty the virtual when needed
+  const manageNewSetNote = function () {
+    virtualNotes = {};
+    generateVirtualNote();
+  };
+
+
+ 
+  
+  $saveNoteBtn.on("click", manageSaveNote);
+  $noteList.on("click", ".list-group-item", manageSetNote);
+  $newNoteBtn.on("click", manageSetNote);
+  $noteList.on("click", ".delete-note", manageDeleteNote);
+
