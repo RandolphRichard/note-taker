@@ -57,7 +57,7 @@ const manageSaveNote = function () {
     };
   
     saveNote(newNote).then(() => {
-      
+    generateNotes();
     generateVirtualNote();
     });
   };
@@ -73,7 +73,7 @@ const manageSaveNote = function () {
     }
   
     deleteNote(note.id).then(() => {
-      
+    generateNotes(); 
     generateVirtualNote();
     });
   };
