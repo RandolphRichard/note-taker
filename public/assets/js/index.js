@@ -32,7 +32,7 @@ const deleteNote = (id) => {
   });
 };
 
-// function to display virtual notes, or empty it.
+// function when the notes section is empty, save button won't appear, once notes added, save button will show
 const generateVirtualNote = () => {
     $saveNoteBtn.hide();
   
@@ -90,11 +90,60 @@ const manageSetNote = function () {
     generateVirtualNote();
   };
 
+// emptied Notes, hide the button saved
+// Or show it
+const generateSaveBtn = function () {
+    if (!$noteTitle.val().trim() || !$noteText.val().trim()) {
+      $saveNoteBtn.hide();
+    } else {
+      $saveNoteBtn.show();
+    }
+  };
+  
+  // generate the list of note titles
+  const generateNoteList = (notes) => {
+    $noteList.empty();
+  
+    const notelistI = [];
+  
+  
+    const create$li = (text, withDeleteButton = true) => {
+      const $li = $("<li class='list-group-item'>");
+      const $span = $("<span>").text(text);
+      $li.append($span);
+  
+      if (withDeleteButton) {
+        const $delBtn = $(
+          "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
+        );
+        $li.append($delBtn);
+      }
+      return $li;
+    };
+  
+    if (notes.length === 0) {
+      notelistI.push(create$li("Unsaved Notes", false));
+    }
+  
+    notes.forEach((note) => {
+      const $li = create$li(note.title).data(note);
+      notelistI.push($li);
+    });
+  
+    $noteList.append(notelistI);
+  };
 
+  const generateNotes = () => {
+    return getNotes().then(generateNoteList);
+  };
  
   
   $saveNoteBtn.on("click", manageSaveNote);
   $noteList.on("click", ".list-group-item", manageSetNote);
-  $newNoteBtn.on("click", manageSetNote);
+  $newNoteBtn.on("click", manageNewSetNote);
   $noteList.on("click", ".delete-note", manageDeleteNote);
-
+  $noteTitle.on("keyup", generateSaveBtn);
+  $noteText.on("keyup", generateSaveBtn);
+  
+// Gets and renders the initial list of notes
+generateNotes();
