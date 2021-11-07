@@ -1,6 +1,8 @@
 # note-taker
 
-Deployable Link - > https://git.heroku.com/reliable-note-taker.git
+Deployable Link - >  https://reliable-note-taker.herokuapp.com/
+
+
 
 # Description:
 A web application that is able to write and save notes
