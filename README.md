@@ -37,6 +37,6 @@ The server is running under localhost:3009 in browser.
 
 # Personal Note
 
-I deployed the app on Heroku. You can use the link the Link above to look and use It. If the application is empty the save Button won't show, just to prevent any temptations. It will show, once you add an actual text content. Eveything is saved on the db.json file. All the Buttons work. Had an issue with the notes not populating and deleting automatically. I had to refresh. But It's fixed. Added Procfile to run heroku, as heroku suggested it.
+I deployed the app on Heroku. You can use the link the Link above to look and use It. If the application is empty the save Button won't show, just to prevent any temptations. It will show, once you add an actual text content. Eveything is saved on the db.json file. All the Buttons work. Had an issue with the notes not populating and deleting automatically. I had to refresh. But It's fixed. Added Procfile to run heroku, as heroku suggested it. Added a new icon pic on the index page.
 
 Enjoy!
